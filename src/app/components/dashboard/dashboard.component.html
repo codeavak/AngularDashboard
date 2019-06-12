@@ -1,0 +1,187 @@
+      <!--breadcrumb-->
+
+      <nav aria-label="breadcrumb" style="margin-bottom:-20px; font-size:small;">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">About</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+
+        </ol>
+      </nav>
+
+<div class="row bg-dark">
+<div class="col-md-3">
+<div class="row">
+  <div class="card" style="width:100%;" >
+    <div class="card-header text-center">
+      {{Position}}
+    </div>
+
+      <div class="card-body text-center">
+          <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_02.png" alt="card image"></p>
+          <h4 class="card-title">{{Username}}</h4>
+      </div>
+</div>
+
+<div class="card" style="width:100%;" >
+  <div class="card-header text-center">
+    Team Summary
+  </div>
+<div class="card-body">
+  <div class="list-group">
+    <div class="list-group-item">No. of Team Members <span class="ml-2 badge badge-pill badge-secondary float-right">{{NumberOfTeamMembers}}</span></div>
+    <div class="list-group-item">Total Cost of all Projects <span class="ml-2 badge badge-pill badge-secondary float-right">{{TotalCostOfProjects|currency}}</span></div>
+    <div class="list-group-item">Pending Tasks <span class="ml-2 badge badge-pill badge-secondary float-right">{{PendingTasks}}</span></div>
+    <div class="list-group-item">Upcoming Projects <span class="ml-2 badge badge-pill badge-secondary float-right">{{UpcomingProjects}}</span></div>
+  </div>
+</div>
+</div>
+
+<div class="card" style="width:100%;" >
+<div class="card-header text-center">
+  Clients
+</div>
+<div class="card-body">
+<div class="list-group">
+  <div *ngFor="let client of Clients" class="list-group-item">{{client}}</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<div class="col-md-6">
+<div class="container bg-secondary p-2">
+<div class="row ">
+
+  <div class="col-md-6">
+
+    <div class="dropdown">
+    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      All Projects
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a *ngFor="let project of Projects" class="dropdown-item" href="#">{{project}}</a>
+    </div>
+  </div>
+
+
+
+</div>
+  <div class="col-md-6">
+    <div class="dropdown  float-right">
+      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+       All Years
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
+        <a *ngFor="let year of Years" class="dropdown-item" href="#">{{year}}</a>
+
+      </div>
+    </div></div>
+
+    </div>
+  </div>
+
+    <div class="row bg-light mt-4 ml-1 mr-1">
+
+      <div class="card" style="width:100%;" >
+        <div class="card-header text-center">
+          Project Briefing
+        </div>
+      <div class="card-body">
+        <div class="list-group">
+          <div class="list-group-item">Project Cost<span class="ml-2 float-right">{{ProjectCost|currency}}</span></div>
+          <div class="list-group-item">Current Expenditure<span class="ml-2 float-right">{{CurrentExpenditure|currency}}</span></div>
+          <div class="list-group-item">Available Funds<span class="ml-2 float-right">{{AvailableFunds|currency}}</span></div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="width:100%;" >
+      <div class="card-header text-center">
+        Team Members Summary
+      </div>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Region</th>
+            <th scope="col">Team Members Count</th>
+            <th scope="col">Temporarily Unavailable Members</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let teamSummary of TeamSummary">
+            <th scope="row">{{teamSummary.Region}}</th>
+            <td>{{teamSummary.MemberCount}}</td>
+            <td>{{teamSummary.UnavailableCount}}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    </div>
+
+    </div>
+
+
+
+</div>
+<div class="col-md-3 bg-light">
+
+<div class="row" >
+  <div class="card" style="width:100%;" >
+    <div class="card-header text-center">
+      Team Members
+    </div>
+
+
+
+
+    <div class="card-body">
+      <div id="accordion">
+          <div class="card" *ngFor="let team of Teams; let i=index">
+              <div class="card-header bg-dark" id="{{'heading' + i}}">
+                <h5 class="mb-0">
+                  <button class="btn btn-link text-light" data-toggle="collapse" [attr.data-target]="'#collapse'+i" aria-expanded="true" [attr.aria-controls]="'collapse' + i">
+                    {{team.Name}}
+                  </button>
+                </h5>
+              </div>
+
+              <div [id]="'collapse'+ i" class="collapse" [ngClass]="{'show': team.Name=='North'}" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Status</th>
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let member of team.Members">
+                        <th scope="row">{{member.ID}}</th>
+                        <td>{{member.Name}}</td>
+                        <td>{{member.Status}}</td>
+
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+      </div>
+    </div>
+
+    </div>
+
+</div>
+
+</div>
