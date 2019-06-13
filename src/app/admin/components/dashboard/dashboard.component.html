@@ -167,7 +167,8 @@
                       <tr *ngFor="let member of team.Members" [style.color]="(member.Status=='Busy')?'red':'black'">
                         <th scope="row">{{member.ID}}</th>
                         <td>{{member.Name}}</td>
-                        <td>{{member.Status}}</td>
+                        <td><i *ngIf="member.Status=='Busy'" class="fa fa-times"></i><i *ngIf="member.Status=='Available'" class="fa fa-user"></i>
+                          {{member.Status}}</td>
 
                       </tr>
 
