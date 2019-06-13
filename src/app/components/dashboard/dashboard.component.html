@@ -164,7 +164,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let member of team.Members">
+                      <tr *ngFor="let member of team.Members" [style.color]="(member.Status=='Busy')?'red':'black'">
                         <th scope="row">{{member.ID}}</th>
                         <td>{{member.Name}}</td>
                         <td>{{member.Status}}</td>
